@@ -1,0 +1,6 @@
+name: Release Validation
+on: { workflow_dispatch: {}, workflow_call: {} }
+jobs:
+  windows:
+    uses: ./.github/workflows/_windows.yml
+    with: { configuration: Release, artifact-name: release-validation, package: true }

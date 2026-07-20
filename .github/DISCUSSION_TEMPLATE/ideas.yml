@@ -1,0 +1,6 @@
+title: '[Idea] '
+labels: [ideas]
+body:
+  - type: textarea
+    attributes: { label: Idea, description: Describe the user problem and expected outcome. }
+    validations: { required: true }

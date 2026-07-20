@@ -1,0 +1,6 @@
+name: Package
+on: { workflow_dispatch: {}, workflow_call: {} }
+jobs:
+  windows:
+    uses: ./.github/workflows/_windows.yml
+    with: { configuration: Release, artifact-name: windows-packages, package: true }

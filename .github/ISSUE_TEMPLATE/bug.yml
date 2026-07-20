@@ -1,0 +1,19 @@
+name: Bug report
+description: Report a reproducible ADB Studio defect
+title: '[Bug] '
+labels: [bug, triage]
+body:
+  - type: textarea
+    attributes: { label: Description, description: 'What happened and what did you expect?' }
+    validations: { required: true }
+  - type: input
+    attributes: { label: ADB Studio version }
+    validations: { required: true }
+  - type: input
+    attributes: { label: Windows and Android versions }
+    validations: { required: true }
+  - type: textarea
+    attributes: { label: Reproduction steps }
+    validations: { required: true }
+  - type: textarea
+    attributes: { label: Sanitized logs, description: Remove device identifiers and personal data. }

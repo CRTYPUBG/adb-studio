@@ -1,0 +1,38 @@
+name: Artifact Sign
+on: { workflow_dispatch: {} }
+permissions: { contents: read }
+jobs:
+  build:
+    uses: ./.github/workflows/_windows.yml
+    with: { configuration: Release, artifact-name: unsigned-windows }
+  sign:
+    needs: build
+    runs-on: windows-2022
+    steps:
+      - uses: actions/download-artifact@v4
+        with: { name: unsigned-windows, path: unsigned }
+      - name: Sign and verify
+        shell: pwsh
+        env:
+          WINDOWS_CERTIFICATE_BASE64: ${{ secrets.WINDOWS_CERTIFICATE_BASE64 }}
+          WINDOWS_CERTIFICATE_PASSWORD: ${{ secrets.WINDOWS_CERTIFICATE_PASSWORD }}
+        run: |
+          if (-not $env:WINDOWS_CERTIFICATE_BASE64 -or -not $env:WINDOWS_CERTIFICATE_PASSWORD) {
+            throw 'Windows signing secrets are not configured'
+          }
+          $certificate = Join-Path $env:RUNNER_TEMP 'signing.pfx'
+          try {
+            [IO.File]::WriteAllBytes($certificate, [Convert]::FromBase64String($env:WINDOWS_CERTIFICATE_BASE64))
+            $files = Get-ChildItem unsigned -Recurse -Filter *.exe
+            if (-not $files) { throw 'No executable artifacts found' }
+            foreach ($file in $files) {
+              & signtool sign /fd SHA256 /td SHA256 /tr https://timestamp.digicert.com /f $certificate /p $env:WINDOWS_CERTIFICATE_PASSWORD $file.FullName
+              if ($LASTEXITCODE -ne 0) { throw "Signing failed: $($file.Name)" }
+              & signtool verify /pa /v $file.FullName
+              if ($LASTEXITCODE -ne 0) { throw "Signature verification failed: $($file.Name)" }
+            }
+          } finally {
+            Remove-Item -LiteralPath $certificate -Force -ErrorAction SilentlyContinue
+          }
+      - uses: actions/upload-artifact@v4
+        with: { name: signed-windows, path: 'unsigned/**/*.exe', if-no-files-found: error }

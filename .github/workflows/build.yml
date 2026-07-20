@@ -1,0 +1,9 @@
+name: Build
+on: { pull_request: {}, push: { branches: [main] }, workflow_dispatch: {} }
+jobs:
+  debug:
+    uses: ./.github/workflows/_windows.yml
+    with: { configuration: Debug, artifact-name: windows-debug }
+  release:
+    uses: ./.github/workflows/_windows.yml
+    with: { configuration: Release, artifact-name: windows-release }

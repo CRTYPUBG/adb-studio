@@ -1,0 +1,47 @@
+name: Release
+
+on:
+  push:
+    tags: ['v*.*.*']
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  package:
+    uses: ./.github/workflows/_windows.yml
+    with: { configuration: Release, artifact-name: release-packages, package: true }
+
+  publish:
+    needs: package
+    runs-on: windows-2022
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: '3.12' }
+      - uses: actions/download-artifact@v4
+        with: { name: release-packages, path: dist }
+      - name: Generate release evidence
+        shell: pwsh
+        run: |
+          python scripts/update_version.py .
+          python scripts/validate_version.py .
+          python scripts/generate_sbom.py . dist/evidence
+          Compress-Archive -Path dist/ADB-Studio/* -DestinationPath dist/ADB-Studio-${{ github.ref_name }}-x64.zip
+          Get-ChildItem dist -Recurse -File | Get-FileHash -Algorithm SHA256 |
+            ForEach-Object { "$($_.Hash.ToLower())  $($_.Path.Replace((Resolve-Path dist).Path + '\', ''))" } |
+            Set-Content -Encoding utf8 dist/SHA256SUMS.txt
+      - uses: actions/upload-artifact@v4
+        with: { name: release-evidence, path: 'dist/**', if-no-files-found: error }
+      - name: Publish GitHub release
+        if: startsWith(github.ref, 'refs/tags/')
+        env: { GH_TOKEN: '${{ github.token }}' }
+        shell: pwsh
+        run: >-
+          gh release create "${{ github.ref_name }}"
+          --verify-tag --generate-notes
+          dist/installer/*.exe
+          dist/*.zip
+          dist/SHA256SUMS.txt
+          dist/evidence/*.json

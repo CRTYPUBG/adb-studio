@@ -1,0 +1,3 @@
+#pragma once
+
+#define ADB_STUDIO_VERSION "@PROJECT_VERSION@"

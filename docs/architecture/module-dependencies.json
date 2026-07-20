@@ -1,0 +1,22 @@
+{
+  "modules": {
+    "adb-studio": "presentation",
+    "adb_studio_core": "viewmodel",
+    "adb_studio_dashboard_tests": "tests",
+    "adb_studio_theme_tests": "tests"
+  },
+  "allowedLayerDependencies": {
+    "presentation": ["presentation", "viewmodel"],
+    "viewmodel": ["viewmodel", "application"],
+    "application": ["application", "core", "domain"],
+    "core": ["core", "domain"],
+    "domain": ["domain"],
+    "infrastructure": ["infrastructure", "core", "domain"],
+    "tests": ["presentation", "viewmodel", "application", "core", "domain", "infrastructure", "tests"]
+  },
+  "dependencies": [
+    ["adb-studio", "adb_studio_core"],
+    ["adb_studio_dashboard_tests", "adb_studio_core"],
+    ["adb_studio_theme_tests", "adb_studio_core"]
+  ]
+}

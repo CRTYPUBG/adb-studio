@@ -1,0 +1,13 @@
+{
+  "name": "ADB Studio",
+  "version": "0.1.0",
+  "build": 2,
+  "channel": "dev",
+  "commit": "",
+  "branch": "",
+  "qt": "6.8.1",
+  "compiler": "MSVC",
+  "minimumWindows": "Windows 11",
+  "buildDate": "",
+  "architecture": "x64"
+}

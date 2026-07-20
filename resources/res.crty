@@ -1,0 +1,71 @@
+{
+  "schemaVersion": 1,
+  "resources": [
+    {
+      "id": "apps.studio.qml.components.DeviceCard",
+      "path": "apps/studio/qml/components/DeviceCard.qml",
+      "type": "qml",
+      "sha256": "3143b025abecaec51db1019e65a6b92efce469e72c8f3555c0ceae5ab00df3a2"
+    },
+    {
+      "id": "apps.studio.qml.components.InfoCard",
+      "path": "apps/studio/qml/components/InfoCard.qml",
+      "type": "qml",
+      "sha256": "4c45a31f22212130b00fd33af7a15392699d13cb722a3aa6706acd533294534c"
+    },
+    {
+      "id": "apps.studio.qml.components.LoadingView",
+      "path": "apps/studio/qml/components/LoadingView.qml",
+      "type": "qml",
+      "sha256": "04e76bdb901775a345d95c6119b28cc6f7732afc1176fcd332f3c64cfc0855d1"
+    },
+    {
+      "id": "apps.studio.qml.components.PrimaryButton",
+      "path": "apps/studio/qml/components/PrimaryButton.qml",
+      "type": "qml",
+      "sha256": "247e4b83aab8429405e7428d3c8ec3e04061275dc52faa6e3ee3c46d6e15b9b9"
+    },
+    {
+      "id": "apps.studio.qml.components.StatusBadge",
+      "path": "apps/studio/qml/components/StatusBadge.qml",
+      "type": "qml",
+      "sha256": "22e4e46c6c025e423a281818a6d85e45bdd2d336fc788f544b4d94910c03203a"
+    },
+    {
+      "id": "apps.studio.qml.Main",
+      "path": "apps/studio/qml/Main.qml",
+      "type": "qml",
+      "sha256": "592abf08faf7ce73a860d415769b1da78cefb5080fe96fcf94195d3678d8025c"
+    },
+    {
+      "id": "apps.studio.qml.pages.DashboardPage",
+      "path": "apps/studio/qml/pages/DashboardPage.qml",
+      "type": "qml",
+      "sha256": "f007ce491d114c11652fcbdc35cc3b7429f727bae9758ad6b65fd9d270c3a6eb"
+    },
+    {
+      "id": "assets.app-icon-adb.ico",
+      "path": "assets/app-icon-adb.ico",
+      "type": "icon",
+      "sha256": "63eabe66f5d8e441310a7da9146348ac5a1b5b6f7e5c93853749deb1c522f233"
+    },
+    {
+      "id": "assets.app-icon-adb.png",
+      "path": "assets/app-icon-adb.png",
+      "type": "image",
+      "sha256": "6def81c2bc56f6c4fcf44d9df2edc2412f38c2f32a079864a03a090ae0a26ad5"
+    },
+    {
+      "id": "assets.logo-adb.png",
+      "path": "assets/logo-adb.png",
+      "type": "image",
+      "sha256": "8cfe67c2331d24c63c1d11f3c14c27f124c91e38000e02916bcde29313a2f7f0"
+    },
+    {
+      "id": "assets.tray-adb.png",
+      "path": "assets/tray-adb.png",
+      "type": "image",
+      "sha256": "f935b34f1310e571366e174cf11af460673f1c0d0f422a205ded5f4a91a25a1a"
+    }
+  ]
+}

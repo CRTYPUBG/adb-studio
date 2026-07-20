@@ -1,0 +1,6 @@
+name: Dependency Audit
+on: { pull_request: {}, workflow_dispatch: {}, schedule: [{ cron: '31 3 * * 1' }] }
+jobs:
+  windows:
+    uses: ./.github/workflows/_windows.yml
+    with: { configuration: Release, artifact-name: dependency-audit }

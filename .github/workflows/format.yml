@@ -1,0 +1,6 @@
+name: Format
+on: { pull_request: {}, workflow_dispatch: {} }
+jobs:
+  windows:
+    uses: ./.github/workflows/_windows.yml
+    with: { configuration: Debug, artifact-name: format-validation }

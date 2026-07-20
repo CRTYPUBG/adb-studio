@@ -1,0 +1,8 @@
+name: Nightly
+on:
+  schedule: [{ cron: '17 2 * * *' }]
+  workflow_dispatch:
+jobs:
+  windows:
+    uses: ./.github/workflows/_windows.yml
+    with: { configuration: Release, artifact-name: nightly-windows, package: true }
