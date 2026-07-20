@@ -41,7 +41,7 @@ VersionInfoVersion={#MyAppVersion}.{#MyAppBuild}
 VersionInfoCompany=ADB Studio Community
 VersionInfoDescription=ADB Studio Installer
 VersionInfoProductName=ADB Studio
-VersionInfoProductVersion={#MyAppVersion}
+VersionInfoProductVersion={#MyAppVersion}.{#MyAppBuild}
 
 [Languages]
 Name: "english"; MessagesFile: "compiler:Default.isl"

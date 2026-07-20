@@ -24,7 +24,8 @@ Results on Windows 11, MSVC 19.44 and Qt 6.8.1:
 - Runtime QML/FluentWinUI3 screenshot smoke test: exit 0, empty stderr.
 - Time to first QML root object: 800 ms on the local reference machine.
 - SPDX 2.3 and CycloneDX 1.6 SBOM generation: passed.
-- Windows FileVersion and ProductVersion: both `0.1.0.1`, derived from `version.crty`.
+- Executable and installer Windows FileVersion/ProductVersion: `0.1.0.2`, derived from
+  `version.crty`.
 - `Build.py` Release packaging: passed; portable output contains Qt, FluentWinUI3, Windows platform
   and MSVC runtime dependencies.
 - Portable-folder runtime smoke test: exit 0 with empty stderr and no Qt development PATH required.
