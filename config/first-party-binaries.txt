@@ -1,0 +1,3 @@
+# Basenames in the deployed tree that are built and owned by ADB Studio.
+# Qt, MSVC runtime, platform plugins and other third-party binaries must not be listed.
+adb-studio.exe

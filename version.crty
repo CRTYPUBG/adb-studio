@@ -1,8 +1,9 @@
 {
   "name": "ADB Studio",
+  "company": "CRTY",
   "version": "0.1.0",
-  "build": 2,
-  "channel": "dev",
+  "build": 7,
+  "channel": "stable",
   "commit": "",
   "branch": "",
   "qt": "6.8.1",

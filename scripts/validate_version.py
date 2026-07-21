@@ -9,6 +9,7 @@ import sys
 SEMVER = re.compile(r"^(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)$")
 REQUIRED = {
     "name": str,
+    "company": str,
     "version": str,
     "build": int,
     "channel": str,

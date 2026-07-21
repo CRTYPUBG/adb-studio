@@ -1,0 +1,138 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="7680" height="4320" viewBox="0 0 7680 4320">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#050A16"/><stop offset="0.55" stop-color="#08172F"/><stop offset="1" stop-color="#0A2545"/>
+    </linearGradient>
+    <radialGradient id="halo" cx="72%" cy="43%" r="58%">
+      <stop offset="0" stop-color="#2563EB" stop-opacity=".32"/><stop offset=".52" stop-color="#06B6D4" stop-opacity=".08"/><stop offset="1" stop-color="#050A16" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="brand" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#60A5FA"/><stop offset=".52" stop-color="#2563EB"/><stop offset="1" stop-color="#06B6D4"/>
+    </linearGradient>
+    <linearGradient id="green" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#4ADE80"/><stop offset="1" stop-color="#22C55E"/></linearGradient>
+    <linearGradient id="glass" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#17385E" stop-opacity=".74"/><stop offset="1" stop-color="#08172F" stop-opacity=".82"/></linearGradient>
+    <linearGradient id="screen" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#0B1F3B"/><stop offset="1" stop-color="#071325"/></linearGradient>
+    <linearGradient id="land" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#123F68"/><stop offset=".52" stop-color="#176B7A"/><stop offset="1" stop-color="#081A2E"/></linearGradient>
+    <pattern id="grid" width="120" height="120" patternUnits="userSpaceOnUse"><path d="M120 0H0V120" fill="none" stroke="#60A5FA" stroke-opacity=".055" stroke-width="2"/></pattern>
+    <pattern id="dots" width="72" height="72" patternUnits="userSpaceOnUse"><circle cx="4" cy="4" r="3" fill="#38BDF8" opacity=".15"/></pattern>
+    <filter id="shadow" x="-30%" y="-30%" width="160%" height="180%"><feDropShadow dx="0" dy="34" stdDeviation="34" flood-color="#000814" flood-opacity=".74"/></filter>
+    <filter id="soft" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="44"/></filter>
+    <filter id="glow" x="-80%" y="-80%" width="260%" height="260%"><feGaussianBlur stdDeviation="18" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <clipPath id="monitorClip"><rect x="4038" y="610" width="3054" height="2138" rx="82"/></clipPath>
+    <clipPath id="phoneClip"><rect x="3428" y="2030" width="760" height="1580" rx="118"/></clipPath>
+    <style>
+      text{font-family:'Segoe UI Variable','Segoe UI','Inter',sans-serif;fill:#F8FAFC}
+      .muted{fill:#A9BDD5}.subtle{fill:#7188A5}.cyan{fill:#22D3EE}.blue{fill:#60A5FA}.green{fill:#4ADE80}
+      .h1{font-size:360px;font-weight:760;letter-spacing:-14px}.h2{font-size:116px;font-weight:610}.tag{font-size:70px;font-weight:700;letter-spacing:23px}
+      .cardTitle{font-size:56px;font-weight:650}.cardText{font-size:35px;font-weight:430}.small{font-size:30px}.tiny{font-size:25px}.micro{font-size:21px}
+      .panel{fill:url(#glass);stroke:#56B9F4;stroke-opacity:.23;stroke-width:3}.line{fill:none;stroke:#23B7F2;stroke-width:5;stroke-linecap:round;stroke-linejoin:round}
+    </style>
+  </defs>
+
+  <rect width="7680" height="4320" fill="url(#bg)"/>
+  <rect width="7680" height="4320" fill="url(#grid)"/><rect x="3550" width="4130" height="4320" fill="url(#dots)"/><rect width="7680" height="4320" fill="url(#halo)"/>
+  <g opacity=".58" filter="url(#glow)"><path d="M0 3780C1250 3390 2120 4110 3540 3510S5860 2980 7680 3330" fill="none" stroke="#2563EB" stroke-width="12"/><path d="M0 3910C1330 3490 2220 4190 3630 3620S6030 3100 7680 3450" fill="none" stroke="#06B6D4" stroke-width="7"/><path d="M960 4230C2230 3700 2900 4260 4480 3730S6520 3410 7680 3660" fill="none" stroke="#22C55E" stroke-width="5"/></g>
+  <g opacity=".28" stroke="#38BDF8" fill="none" stroke-width="4"><path d="M270 340V690H620v210h290"/><circle cx="270" cy="340" r="14" fill="#38BDF8"/><circle cx="910" cy="900" r="14" fill="#38BDF8"/><path d="M7140 250v300h-250v250h-210"/><circle cx="7140" cy="250" r="14" fill="#38BDF8"/><circle cx="6680" cy="800" r="14" fill="#38BDF8"/></g>
+
+  <!-- Custom ADB Studio brand mark -->
+  <g transform="translate(330 320)" filter="url(#shadow)">
+    <rect width="520" height="520" rx="132" fill="#0B1D38" stroke="#5FC7FF" stroke-width="12"/>
+    <rect x="80" y="94" width="270" height="306" rx="44" fill="url(#brand)" opacity=".96"/>
+    <rect x="124" y="134" width="184" height="214" rx="28" fill="#09162A"/>
+    <path d="M151 312l81-72 54 38 91-101" class="line" stroke-width="24"/>
+    <circle cx="380" cy="174" r="23" fill="#22C55E"/>
+    <path d="M366 254h100M366 304h132M366 354h78" stroke="#22D3EE" stroke-width="17" stroke-linecap="round"/>
+    <path d="M185 400v54h82v-54" fill="none" stroke="#F8FAFC" stroke-width="18"/>
+    <rect x="178" y="442" width="96" height="70" rx="18" fill="#F8FAFC"/><path d="M207 460v28M245 460v28" stroke="#0B1D38" stroke-width="13"/>
+  </g>
+
+  <!-- Left hero copy -->
+  <text x="990" y="610" class="h1">ADB <tspan fill="url(#brand)">Studio</tspan></text>
+  <g role="text" aria-label="Professional Android Device Management Platform"><text x="350" y="930" class="h2">Professional Android Device</text><text x="350" y="1060" class="h2">Management Platform</text></g>
+  <text x="355" y="1238" class="tag"><tspan fill="#60A5FA">CONNECT</tspan><tspan fill="#59718F"> • </tspan><tspan fill="#22D3EE">CONTROL</tspan><tspan fill="#59718F"> • </tspan><tspan fill="#4ADE80">OPTIMIZE</tspan></text>
+
+  <!-- Six original feature cards -->
+  <g transform="translate(350 1440)">
+    <g class="panel" filter="url(#shadow)"><rect width="1010" height="420" rx="48"/><rect x="46" y="52" width="118" height="118" rx="32" fill="#163A72"/><path d="M75 134V83h61v51M87 148h37M115 83l22-22" class="line" stroke-width="9"/><circle cx="137" cy="61" r="9" fill="#4ADE80"/><text x="200" y="116" class="cardTitle">Screen Mirroring</text><text x="200" y="173" class="cardText muted">Ultra-low latency visual control</text><text x="48" y="278" class="cardText">USB • Wireless • Audio • 120 FPS</text><path d="M48 340h700" stroke="#2563EB" stroke-width="8" stroke-linecap="round"/><path d="M48 340h470" stroke="#22D3EE" stroke-width="8" stroke-linecap="round"/></g>
+    <g transform="translate(1050)" class="panel" filter="url(#shadow)"><rect width="1010" height="420" rx="48"/><rect x="46" y="52" width="118" height="118" rx="32" fill="#073D52"/><path d="M72 143V89h39l16-20h47v74zM84 112h77" class="line" stroke-width="9"/><text x="200" y="116" class="cardTitle">File Manager</text><text x="200" y="173" class="cardText muted">Secure high-speed transfers</text><text x="48" y="278" class="cardText">Browse • Sync • Drag &amp; Drop</text><circle cx="754" cy="340" r="9" fill="#22C55E"/><text x="780" y="351" class="small green">Ready</text></g>
+    <g transform="translate(2100)" class="panel" filter="url(#shadow)"><rect width="1010" height="420" rx="48"/><rect x="46" y="52" width="118" height="118" rx="32" fill="#12452D"/><path d="M74 93l48-29 48 29v58l-48 29-48-29zM122 64v116M74 93l48 29 48-29" class="line" stroke="#4ADE80" stroke-width="8"/><text x="200" y="116" class="cardTitle">APK Manager</text><text x="200" y="173" class="cardText muted">Install and manage applications</text><text x="48" y="278" class="cardText">Packages • Permissions • Backup</text><rect x="48" y="324" width="258" height="52" rx="26" fill="#174D35"/><text x="82" y="360" class="small green">Verified install</text></g>
+    <g transform="translate(0 460)" class="panel" filter="url(#shadow)"><rect width="1010" height="420" rx="48"/><rect x="46" y="52" width="118" height="118" rx="32" fill="#2D2763"/><path d="M70 143a55 55 0 01100 0M120 119l34-38" class="line" stroke="#A78BFA" stroke-width="10"/><circle cx="120" cy="119" r="11" fill="#F8FAFC"/><text x="200" y="116" class="cardTitle">Performance</text><text x="200" y="173" class="cardText muted">Real-time device intelligence</text><text x="48" y="278" class="cardText">CPU • GPU • Memory • Thermals</text><path d="M48 358l100-34 92 14 84-67 98 33 104-73 110 28 116-66" fill="none" stroke="#A78BFA" stroke-width="8"/></g>
+    <g transform="translate(1050 460)" class="panel" filter="url(#shadow)"><rect width="1010" height="420" rx="48"/><rect x="46" y="52" width="118" height="118" rx="32" fill="#073D52"/><path d="M72 78h92v77H72zM88 100l17 16-17 16M116 132h28" class="line" stroke-width="8"/><text x="200" y="116" class="cardTitle">Developer Tools</text><text x="200" y="173" class="cardText muted">Professional Android workflows</text><text x="48" y="278" class="cardText">Shell • Logcat • Fastboot • Debug</text><text x="48" y="356" class="small cyan">$ adb studio --diagnostics</text></g>
+    <g transform="translate(2100 460)" class="panel" filter="url(#shadow)"><rect width="1010" height="420" rx="48"/><rect x="46" y="52" width="118" height="118" rx="32" fill="#163A72"/><path d="M88 69h31v38h38v31h-38v38H88v-38H50v-31h38z" transform="translate(8 -6)" fill="none" stroke="#60A5FA" stroke-width="8"/><text x="200" y="116" class="cardTitle">Plugin Marketplace</text><text x="200" y="173" class="cardText muted">Signed, isolated extensions</text><text x="48" y="278" class="cardText">Discover • Validate • Customize</text><rect x="48" y="324" width="308" height="52" rx="26" fill="#123B71"/><text x="82" y="360" class="small blue">Capability secured</text></g>
+  </g>
+
+  <!-- Monitor hardware -->
+  <g filter="url(#shadow)">
+    <rect x="3920" y="480" width="3290" height="2400" rx="135" fill="#050B14" stroke="#398FD0" stroke-opacity=".6" stroke-width="12"/>
+    <rect x="3982" y="545" width="3166" height="2268" rx="98" fill="#0A1730" stroke="#142C4A" stroke-width="8"/>
+    <circle cx="5560" cy="515" r="12" fill="#31516F"/>
+    <g clip-path="url(#monitorClip)"><rect x="4038" y="610" width="3054" height="2138" fill="url(#screen)"/>
+      <!-- Titlebar -->
+      <rect x="4038" y="610" width="3054" height="132" fill="#09162A"/><g transform="translate(4090 642)"><rect width="70" height="70" rx="20" fill="url(#brand)"/><path d="M18 51V21h34v30M27 57h18" fill="none" stroke="#fff" stroke-width="6"/><text x="94" y="49" font-size="43" font-weight="700">ADB Studio</text></g>
+      <text x="6530" y="692" class="small muted">—</text><rect x="6650" y="652" width="34" height="27" fill="none" stroke="#B9CCE1" stroke-width="4"/><text x="6875" y="694" font-size="42">×</text>
+      <!-- Sidebar -->
+      <rect x="4038" y="742" width="470" height="2006" fill="#071225"/><text x="4100" y="845" class="small subtle">WORKSPACE</text>
+      <g font-size="34"><rect x="4080" y="890" width="385" height="88" rx="22" fill="#174EAE"/><text x="4152" y="947" font-weight="650">Dashboard</text><text x="4152" y="1048" class="muted">Devices</text><text x="4152" y="1144" class="muted">Screen Mirroring</text><text x="4152" y="1240" class="muted">File Manager</text><text x="4152" y="1336" class="muted">APK Manager</text><text x="4152" y="1432" class="muted">Performance</text><text x="4152" y="1528" class="muted">Developer Tools</text><text x="4152" y="1624" class="muted">Plugins</text><text x="4152" y="1720" class="muted">Settings</text></g>
+      <rect x="4080" y="2520" width="385" height="132" rx="28" fill="#0D2541"/><circle cx="4140" cy="2586" r="24" fill="#22C55E"/><text x="4190" y="2578" class="small">ADB Online</text><text x="4190" y="2622" class="tiny muted">2 devices connected</text>
+      <!-- Dashboard heading -->
+      <text x="4590" y="858" font-size="72" font-weight="720">Device Command Center</text><text x="4590" y="925" class="small muted">Live fleet health, mirroring and diagnostics</text>
+      <rect x="6542" y="806" width="460" height="92" rx="30" fill="#12315A"/><circle cx="6610" cy="852" r="17" fill="none" stroke="#8FB6D9" stroke-width="5"/><path d="M6623 865l21 21" stroke="#8FB6D9" stroke-width="5"/><text x="6670" y="867" class="small muted">Search devices</text>
+      <!-- Device and live preview cards -->
+      <rect x="4590" y="1000" width="830" height="585" rx="45" class="panel"/><text x="4650" y="1082" class="small muted">CONNECTED DEVICE</text><text x="4650" y="1160" font-size="56" font-weight="700">Studio Reference</text><text x="4650" y="1215" class="small green">● Authorized • USB 3.2</text>
+      <g transform="translate(4650 1270)"><rect width="190" height="235" rx="40" fill="#0B1220" stroke="#60A5FA" stroke-width="8"/><rect x="25" y="35" width="140" height="160" rx="20" fill="url(#land)"/><circle cx="95" cy="213" r="10" fill="#5C789A"/></g>
+      <g transform="translate(4890 1280)" class="small"><text y="20" class="muted">Platform</text><text x="210" y="20">Android 15</text><text y="75" class="muted">Battery</text><text x="210" y="75" class="green">92%</text><text y="130" class="muted">Storage</text><text x="210" y="130">186 / 256 GB</text><text y="185" class="muted">Temperature</text><text x="210" y="185">31°C</text></g>
+      <rect x="5470" y="1000" width="1532" height="585" rx="45" class="panel"/><text x="5535" y="1082" class="small muted">LIVE MIRROR</text><rect x="5535" y="1120" width="1402" height="375" rx="28" fill="url(#land)"/>
+      <circle cx="6685" cy="1200" r="130" fill="#0C233A" opacity=".6"/><path d="M5550 1450l340-250 210 130 240-196 270 216 220-110 107 85v170H5535z" fill="#071827" opacity=".85"/><circle cx="5665" cy="1215" r="55" fill="#F3C85A" opacity=".9"/>
+      <rect x="6700" y="1145" width="190" height="62" rx="31" fill="#123E2C"/><text x="6738" y="1188" class="small green">120 FPS</text><rect x="5535" y="1512" width="255" height="56" rx="20" fill="#174EAE"/><text x="5600" y="1551" class="tiny">● LIVE</text><text x="5830" y="1551" class="tiny muted">H.265 • 1440p • Audio</text>
+      <!-- metric cards -->
+      <g transform="translate(4590 1645)"><rect width="575" height="330" rx="42" class="panel"/><text x="45" y="70" class="small muted">BATTERY</text><text x="45" y="168" font-size="92" font-weight="720">92<tspan font-size="48">%</tspan></text><path d="M45 246h480" stroke="#183350" stroke-width="22" stroke-linecap="round"/><path d="M45 246h442" stroke="#22C55E" stroke-width="22" stroke-linecap="round"/><text x="45" y="300" class="tiny green">Healthy • 4h 18m remaining</text></g>
+      <g transform="translate(5200 1645)"><rect width="575" height="330" rx="42" class="panel"/><text x="45" y="70" class="small muted">CPU / GPU</text><text x="45" y="165" font-size="82" font-weight="720">14<tspan font-size="42">%</tspan></text><text x="280" y="165" font-size="82" font-weight="720">11<tspan font-size="42">%</tspan></text><path d="M45 260l70-22 62 12 72-67 74 37 68-84 82 33 57-30" fill="none" stroke="#22D3EE" stroke-width="8"/><text x="45" y="304" class="tiny muted">8-core • Stable clocks</text></g>
+      <g transform="translate(5810 1645)"><rect width="575" height="330" rx="42" class="panel"/><text x="45" y="70" class="small muted">MEMORY</text><text x="45" y="165" font-size="82" font-weight="720">3.2<tspan font-size="42"> GB</tspan></text><rect x="45" y="220" width="480" height="26" rx="13" fill="#183350"/><rect x="45" y="220" width="210" height="26" rx="13" fill="url(#brand)"/><text x="45" y="304" class="tiny muted">of 8 GB • No pressure</text></g>
+      <g transform="translate(6420 1645)"><rect width="582" height="330" rx="42" class="panel"/><text x="45" y="70" class="small muted">USB THROUGHPUT</text><text x="45" y="165" font-size="82" font-weight="720" aria-label="480 MB/s">480<tspan font-size="42"> MB/s</tspan></text><path d="M45 255h470" stroke="#183350" stroke-width="16" stroke-linecap="round"/><path d="M45 255h420" stroke="#4ADE80" stroke-width="16" stroke-linecap="round"/><text x="45" y="304" class="tiny green">Excellent • 8 ms latency</text></g>
+      <!-- chart panel -->
+      <rect x="4590" y="2030" width="2412" height="600" rx="46" class="panel"/><text x="4650" y="2110" class="small muted">PERFORMANCE TELEMETRY</text><text x="6500" y="2110" class="tiny"><tspan fill="#22D3EE">● CPU</tspan><tspan fill="#4ADE80">   ● GPU</tspan><tspan fill="#A78BFA">   ● RAM</tspan></text>
+      <g opacity=".25" stroke="#7AA8CD" stroke-width="2"><path d="M4650 2200H6940M4650 2310H6940M4650 2420H6940M4650 2530H6940"/><path d="M4850 2180v390M5250 2180v390M5650 2180v390M6050 2180v390M6450 2180v390M6850 2180v390"/></g>
+      <path d="M4650 2470l150-70 145 30 155-140 150 75 155-118 150 56 150-150 150 108 150-65 150 120 150-156 150 80 150-31 150 110 150-65" fill="none" stroke="#22D3EE" stroke-width="8"/>
+      <path d="M4650 2520l150-20 145-55 155 30 150-72 155 40 150-28 150-62 150 52 150-38 150 73 150-46 150 41 150-66 150 38 150-24" fill="none" stroke="#4ADE80" stroke-width="7"/>
+    </g>
+    <path d="M5380 2880h370l48 360h-470z" fill="#07101E" stroke="#193A5B" stroke-width="8"/><path d="M5050 3240h1025q100 0 155 80H4900q50-80 150-80z" fill="#0B182A" stroke="#193A5B" stroke-width="8"/>
+  </g>
+
+  <!-- Phone and USB-C cable -->
+  <g filter="url(#shadow)"><rect x="3320" y="1910" width="980" height="1810" rx="162" fill="#040912" stroke="#3E91C8" stroke-width="10"/><g clip-path="url(#phoneClip)"><rect x="3428" y="2030" width="760" height="1580" fill="#08172F"/><rect x="3615" y="2065" width="386" height="54" rx="27" fill="#02060D"/>
+    <text x="3490" y="2220" font-size="48" font-weight="720">ADB Studio</text><text x="3490" y="2272" class="tiny muted">Companion</text><circle cx="4070" cy="2210" r="17" fill="#22C55E"/>
+    <rect x="3490" y="2350" width="636" height="260" rx="44" class="panel"/><text x="3545" y="2425" class="tiny muted">DEVICE STATUS</text><text x="3545" y="2500" font-size="52" font-weight="680">Connected</text><text x="3545" y="2560" class="small green">USB debugging authorized</text>
+    <g transform="translate(3490 2680)"><rect width="300" height="205" rx="38" class="panel"/><text x="35" y="60" class="tiny muted">BATTERY</text><text x="35" y="140" font-size="62" font-weight="700">92%</text><rect x="35" y="165" width="230" height="14" rx="7" fill="#174D35"/><rect x="35" y="165" width="212" height="14" rx="7" fill="#4ADE80"/></g>
+    <g transform="translate(3826 2680)"><rect width="300" height="205" rx="38" class="panel"/><text x="35" y="60" class="tiny muted">STORAGE</text><text x="35" y="140" font-size="58" font-weight="700">73%</text><text x="35" y="180" class="micro muted">186 / 256 GB</text></g>
+    <g transform="translate(3490 2925)"><rect width="636" height="156" rx="38" class="panel"/><text x="35" y="60" class="tiny muted">TEMPERATURE</text><text x="35" y="123" font-size="52" font-weight="700">31°C</text><text x="450" y="102" class="small green">Optimal</text></g>
+    <text x="3490" y="3190" class="small" font-weight="650">Quick Actions</text>
+    <g transform="translate(3490 3240)" text-anchor="middle"><rect width="145" height="145" rx="34" fill="#123B71"/><path d="M48 94V48h50v46M60 105h26" class="line" stroke-width="7"/><text x="72" y="188" class="tiny">Mirror</text><g transform="translate(164)"><rect width="145" height="145" rx="34" fill="#0C3C50"/><path d="M33 105V55h35l14-16h31v66z" class="line" stroke-width="7"/><text x="72" y="188" class="tiny">Files</text></g><g transform="translate(328)"><rect width="145" height="145" rx="34" fill="#2D2763"/><path d="M30 100a47 47 0 0185 0M72 80l25-27" class="line" stroke="#A78BFA" stroke-width="7"/><text x="72" y="188" class="tiny">Benchmark</text></g><g transform="translate(492)"><rect width="145" height="145" rx="34" fill="#12452D"/><path d="M30 42h85v70H30zM45 62l15 14-15 14M70 90h27" class="line" stroke="#4ADE80" stroke-width="7"/><text x="72" y="188" class="tiny">Shell</text></g></g>
+  </g><rect x="3658" y="1945" width="310" height="38" rx="19" fill="#02050A"/></g>
+  <path d="M3810 3720v180c0 130 130 130 130 260" fill="none" stroke="#172338" stroke-width="52" stroke-linecap="round"/><path d="M3810 3720v180c0 130 130 130 130 260" fill="none" stroke="#5C7595" stroke-width="12" stroke-linecap="round"/><rect x="3750" y="3670" width="120" height="88" rx="22" fill="#A9BDD5"/><rect x="3780" y="3695" width="60" height="28" rx="10" fill="#162438"/>
+
+  <!-- Floating analytics panels -->
+  <g filter="url(#shadow)"><g transform="translate(6970 900)"><rect width="500" height="260" rx="46" class="panel"/><text x="42" y="62" class="tiny muted">LATENCY</text><text x="42" y="158" font-size="82" font-weight="730">8 <tspan font-size="38">ms</tspan></text><text x="42" y="215" class="tiny green">● Excellent</text></g>
+  <g transform="translate(6880 1240)"><rect width="590" height="285" rx="46" class="panel"/><text x="42" y="62" class="tiny muted">FRAME RATE</text><text x="42" y="165" font-size="90" font-weight="730">120 <tspan font-size="38">FPS</tspan></text><path d="M42 228h500" stroke="#183350" stroke-width="18" stroke-linecap="round"/><path d="M42 228h486" stroke="#22C55E" stroke-width="18" stroke-linecap="round"/></g>
+  <g transform="translate(6960 1605)"><rect width="510" height="350" rx="46" class="panel"/><text x="42" y="62" class="tiny muted">LIVE SYSTEM</text><text x="42" y="132" class="small">CPU</text><text x="400" y="132" class="small cyan">14%</text><text x="42" y="190" class="small">GPU</text><text x="400" y="190" class="small green">11%</text><text x="42" y="248" class="small">RAM</text><text x="350" y="248" class="small blue">3.2 GB</text><text x="42" y="306" class="small">TEMP</text><text x="380" y="306" class="small">31°C</text></g></g>
+
+  <!-- Bottom capability glass bar -->
+  <g transform="translate(300 3500)" filter="url(#shadow)"><rect width="7080" height="410" rx="76" fill="#0A1C34" fill-opacity=".86" stroke="#4EAEE8" stroke-opacity=".3" stroke-width="4"/>
+    <text x="70" y="84" class="small subtle">ENTERPRISE PLATFORM</text>
+    <g transform="translate(70 140)" class="small"><g><circle cx="40" cy="40" r="40" fill="#123B71"/><path d="M19 39l16 16 29-34" fill="none" stroke="#60A5FA" stroke-width="8"/><text x="98" y="51">Secure</text></g>
+    <g transform="translate(420)"><circle cx="40" cy="40" r="40" fill="#12452D"/><path d="M21 48l19-28 19 28-19 14z" fill="none" stroke="#4ADE80" stroke-width="6"/><text x="98" y="51">Open Source</text></g>
+    <g transform="translate(930)"><circle cx="40" cy="40" r="40" fill="#2D2763"/><text x="40" y="51" text-anchor="middle" font-size="25" font-weight="700">A2</text><text x="98" y="51">Apache-2.0</text></g>
+    <g transform="translate(1450)"><circle cx="40" cy="40" r="40" fill="#073D52"/><path d="M25 55l17-34 8 19h19" fill="none" stroke="#22D3EE" stroke-width="7"/><text x="98" y="51">High Performance</text></g>
+    <g transform="translate(2070)"><circle cx="40" cy="40" r="40" fill="#123B71"/><path d="M18 18h20v20H18zM43 18h20v20H43zM18 43h20v20H18zM43 43h20v20H43z" fill="#60A5FA"/><text x="98" y="51">Windows 11 Ready</text></g>
+    <g transform="translate(2770)"><circle cx="40" cy="40" r="40" fill="#12452D"/><text x="40" y="51" text-anchor="middle" font-size="28" font-weight="700">Qt</text><text x="98" y="51">Qt 6</text></g>
+    <g transform="translate(3110)"><circle cx="40" cy="40" r="40" fill="#073D52"/><text x="40" y="51" text-anchor="middle" font-size="24" font-weight="700">C++</text><text x="98" y="51">C++20</text></g>
+    <g transform="translate(3500)"><circle cx="40" cy="40" r="40" fill="#123B71"/><text x="40" y="51" text-anchor="middle" font-size="24" font-weight="700">ADB</text><text x="98" y="51">ADB</text></g>
+    <g transform="translate(3830)"><circle cx="40" cy="40" r="40" fill="#073D52"/><path d="M18 51h44M25 32h30M32 18h16" stroke="#22D3EE" stroke-width="7" stroke-linecap="round"/><text x="98" y="51">scrcpy Compatible</text></g>
+    <g transform="translate(4450)"><circle cx="40" cy="40" r="40" fill="#2D2763"/><path d="M20 27h40M20 40h40M20 53h26" stroke="#A78BFA" stroke-width="6"/><text x="98" y="51">GitHub Actions</text></g>
+    <g transform="translate(5030)"><circle cx="40" cy="40" r="40" fill="#12452D"/><path d="M21 40a19 19 0 1132 14M59 40a19 19 0 11-32-14" fill="none" stroke="#4ADE80" stroke-width="6"/><text x="98" y="51">Automatic Updates</text></g>
+    <g transform="translate(5710)"><circle cx="40" cy="40" r="40" fill="#123B71"/><path d="M18 21h44v42H18zM28 31h24M28 43h24M28 55h15" fill="none" stroke="#60A5FA" stroke-width="5"/><text x="98" y="51">Plugin SDK</text></g></g>
+    <path d="M70 275H7010" stroke="#376181" stroke-opacity=".55" stroke-width="3"/>
+    <text x="70" y="350" font-size="34" letter-spacing="6" fill="#60A5FA">adbstudio.dev</text><text x="2700" y="350" class="small muted">github.com/CRTYPUBG/adb-studio</text><text x="5260" y="350" class="small muted">Apache-2.0</text><text x="6630" y="350" class="small" font-weight="700">v1.0.0</text>
+  </g>
+
+  <text x="7370" y="4170" text-anchor="end" class="tiny subtle" letter-spacing="4">CONNECT • CONTROL • OPTIMIZE</text>
+</svg>

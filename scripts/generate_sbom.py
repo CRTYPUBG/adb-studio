@@ -17,17 +17,28 @@ def main() -> int:
     output.mkdir(parents=True, exist_ok=True)
     version = json.loads((root / "version.crty").read_text(encoding="utf-8"))["version"]
     components = [
-        {"name": "ADB Studio", "version": version, "license": "NOASSERTION"},
+        {"name": "ADB Studio", "version": version, "license": "Apache-2.0"},
         {"name": "Qt", "version": "6.8.1", "license": "LGPL-3.0-only OR LicenseRef-Qt-Commercial"},
-        {"name": "scrcpy", "version": "4.0", "license": "Apache-2.0"},
+        {"name": "Microsoft Visual C++ Runtime", "version": "14.44",
+         "license": "LicenseRef-Microsoft-Visual-Cpp-Redistributable"},
     ]
+    packaged_root = root / "dist" / "ADB-Studio"
+    packaged_files = (
+        sorted(path for path in packaged_root.rglob("*") if path.is_file())
+        if packaged_root.is_dir()
+        else []
+    )
     serial = f"urn:uuid:{uuid.uuid5(uuid.NAMESPACE_URL, f'adb-studio:{version}')}"
     cyclonedx = {
         "bomFormat": "CycloneDX",
         "specVersion": "1.6",
         "serialNumber": serial,
         "version": 1,
-        "metadata": {"component": {"type": "application", "name": "ADB Studio", "version": version}},
+        "metadata": {"component": {
+            "type": "application", "name": "ADB Studio", "version": version,
+            "hashes": ([{"alg": "SHA-256", "content": digest(packaged_root / "adb-studio.exe")}]
+                       if (packaged_root / "adb-studio.exe").is_file() else []),
+        }},
         "components": [
             {"type": "library" if item["name"] != "ADB Studio" else "application",
              "name": item["name"], "version": item["version"],
@@ -51,6 +62,13 @@ def main() -> int:
              "licenseConcluded": item["license"], "licenseDeclared": item["license"],
              "copyrightText": "NOASSERTION", "filesAnalyzed": False}
             for item in components
+        ],
+        "files": [
+            {"fileName": path.relative_to(packaged_root).as_posix(),
+             "SPDXID": f"SPDXRef-File-{index}",
+             "checksums": [{"algorithm": "SHA256", "checksumValue": digest(path)}],
+             "licenseConcluded": "NOASSERTION", "copyrightText": "NOASSERTION"}
+            for index, path in enumerate(packaged_files, start=1)
         ],
     }
     (output / "bom.cdx.json").write_text(json.dumps(cyclonedx, indent=2) + "\n", encoding="utf-8")

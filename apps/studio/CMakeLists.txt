@@ -17,7 +17,16 @@ qt_add_qml_module(adb-studio
     qml/components/InfoCard.qml
     qml/components/DeviceCard.qml
     qml/components/LoadingView.qml
+    qml/components/ConnectionWizard.qml
     qml/pages/DashboardPage.qml
+    qml/pages/WorkspaceModulePage.qml
+    qml/pages/MirrorPage.qml
+)
+
+qt_add_translations(adb-studio
+  TS_FILES "${CMAKE_SOURCE_DIR}/translations/adb_studio_tr.ts"
+  RESOURCE_PREFIX "/i18n"
+  LUPDATE_OPTIONS -no-obsolete
 )
 
 set(ADB_STUDIO_BRANDING_ASSETS

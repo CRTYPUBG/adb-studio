@@ -10,6 +10,9 @@ set(CMAKE_AUTOMOC ON)
 
 if(MSVC)
   add_compile_options(/W4 /permissive- /EHsc /utf-8)
+  add_compile_options($<$<CONFIG:Release>:/Zi>)
+  add_link_options($<$<CONFIG:Release>:/DEBUG:FULL> $<$<CONFIG:Release>:/OPT:REF>
+                   $<$<CONFIG:Release>:/OPT:ICF>)
   if(ADB_STUDIO_WARNINGS_AS_ERRORS)
     add_compile_options(/WX)
   endif()

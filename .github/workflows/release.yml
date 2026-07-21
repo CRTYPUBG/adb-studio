@@ -4,44 +4,87 @@ on:
   push:
     tags: ['v*.*.*']
   workflow_dispatch:
+  workflow_call:
 
 permissions:
   contents: write
+  security-events: write
 
 jobs:
-  package:
-    uses: ./.github/workflows/_windows.yml
-    with: { configuration: Release, artifact-name: release-packages, package: true }
-
-  publish:
-    needs: package
+  release:
     runs-on: windows-2022
     steps:
       - uses: actions/checkout@v7
+        with: { fetch-depth: 0 }
       - uses: actions/setup-python@v7
         with: { python-version: '3.12' }
-      - uses: actions/download-artifact@v8
-        with: { name: release-packages, path: dist }
-      - name: Generate release evidence
+      - run: python -m pip install --disable-pip-version-check Pillow==12.2.0
+      - uses: jurplel/install-qt-action@v4
+        with: { version: '6.8.1', arch: win64_msvc2022_64, cache: true }
+      - name: Install release tools
         shell: pwsh
         run: |
-          python scripts/update_version.py .
-          python scripts/validate_version.py .
-          python scripts/generate_sbom.py . dist/evidence
-          Compress-Archive -Path dist/ADB-Studio/* -DestinationPath dist/ADB-Studio-${{ github.ref_name }}-x64.zip
-          Get-ChildItem dist -Recurse -File | Get-FileHash -Algorithm SHA256 |
-            ForEach-Object { "$($_.Hash.ToLower())  $($_.Path.Replace((Resolve-Path dist).Path + '\', ''))" } |
-            Set-Content -Encoding utf8 dist/SHA256SUMS.txt
+          choco install innosetup llvm cppcheck ninja --yes --no-progress
+          Import-Module "$env:ChocolateyInstall\helpers\chocolateyProfile.psm1"
+          Update-SessionEnvironment
+          ./scripts/install_iwyu.ps1
+      - uses: github/codeql-action/init@v4
+        with: { languages: c-cpp }
+      - name: Decode signing certificate
+        shell: pwsh
+        env: { SIGN_CERT_BASE64: '${{ secrets.SIGN_CERT_BASE64 }}' }
+        run: |
+          if (-not $env:SIGN_CERT_BASE64) { throw 'SIGN_CERT_BASE64 is not configured' }
+          [IO.File]::WriteAllBytes("$env:RUNNER_TEMP\signing.pfx", [Convert]::FromBase64String($env:SIGN_CERT_BASE64))
+      - name: Build, test, analyze, package, sign and verify
+        env:
+          QTDIR: ${{ env.QT_ROOT_DIR }}
+          SIGN_CERT_PATH: '${{ runner.temp }}\signing.pfx'
+          SIGN_CERT_PASSWORD: ${{ secrets.SIGN_CERT_PASSWORD }}
+          SIGN_TIMESTAMP_URL: ${{ vars.SIGN_TIMESTAMP_URL || 'https://timestamp.digicert.com' }}
+          SIGN_HASH_ALGORITHM: SHA256
+          MSIX_PUBLISHER: ${{ vars.MSIX_PUBLISHER || 'CN=CRTY' }}
+        run: python build.py release
+      - uses: github/codeql-action/analyze@v4
+      - name: Commit generated changelog and approved benchmark baseline
+        if: github.event_name != 'push'
+        shell: pwsh
+        run: |
+          python -c "import build; from build_config import load_config; build.approve_benchmark_baseline(load_config('Release'))"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add CHANGELOG.md version.crty benchmarks/baseline.json
+          $changed = git diff --cached --name-only
+          if ($changed) {
+            git commit -m "chore(release): synchronize generated release metadata"
+            git push origin "HEAD:${{ github.ref_name }}"
+          }
+      - name: Delete signing certificate
+        if: always()
+        shell: pwsh
+        run: Remove-Item -LiteralPath "$env:RUNNER_TEMP\signing.pfx" -Force -ErrorAction SilentlyContinue
       - uses: actions/upload-artifact@v7
-        with: { name: release-evidence, path: 'dist/**', if-no-files-found: error }
+        with: { name: release-artifacts, path: 'dist/**', if-no-files-found: error }
+      - name: Create tag for a manual release
+        if: github.event_name != 'push'
+        shell: pwsh
+        run: |
+          $version = (Get-Content version.crty | ConvertFrom-Json).version
+          $tag = "v$version"
+          if (git tag --list $tag) { throw "Tag $tag already exists" }
+          git tag -a $tag -m "ADB Studio $version"
+          git push origin $tag
+          "RELEASE_TAG=$tag" | Out-File -FilePath $env:GITHUB_ENV -Append
+      - name: Select release tag
+        if: github.event_name == 'push'
+        shell: pwsh
+        run: '"RELEASE_TAG=${{ github.ref_name }}" | Out-File -FilePath $env:GITHUB_ENV -Append'
       - name: Publish GitHub release
-        if: startsWith(github.ref, 'refs/tags/')
+        if: github.event_name == 'push'
         env: { GH_TOKEN: '${{ github.token }}' }
         shell: pwsh
-        run: >-
-          gh release create "${{ github.ref_name }}"
-          --verify-tag --generate-notes
-          dist/installer/*.exe
-          dist/*.zip
-          dist/SHA256SUMS.txt
-          dist/evidence/*.json
+        run: |
+          $files = Get-ChildItem dist/artifacts,dist/evidence -Recurse -File | ForEach-Object FullName
+          gh release create "$env:RELEASE_TAG" --repo "${{ github.repository }}" --verify-tag `
+            --title "ADB Studio $($env:RELEASE_TAG.TrimStart('v'))" `
+            --notes-file dist/artifacts/RELEASE_NOTES.md $files

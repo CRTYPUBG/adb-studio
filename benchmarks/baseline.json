@@ -1,0 +1,7 @@
+{
+  "schemaVersion": 1,
+  "approvedVersion": null,
+  "startupQmlMs": null,
+  "allowedRegressionPercent": 10,
+  "note": "The first signed release establishes the approved comparison value."
+}

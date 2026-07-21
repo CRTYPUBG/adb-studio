@@ -2,6 +2,12 @@
   "schemaVersion": 1,
   "resources": [
     {
+      "id": "apps.studio.qml.components.ConnectionWizard",
+      "path": "apps/studio/qml/components/ConnectionWizard.qml",
+      "type": "qml",
+      "sha256": "427ec9855bfee2b472811bb6cc31c987c45a410559aaa758f74770b9522130fe"
+    },
+    {
       "id": "apps.studio.qml.components.DeviceCard",
       "path": "apps/studio/qml/components/DeviceCard.qml",
       "type": "qml",
@@ -35,13 +41,31 @@
       "id": "apps.studio.qml.Main",
       "path": "apps/studio/qml/Main.qml",
       "type": "qml",
-      "sha256": "592abf08faf7ce73a860d415769b1da78cefb5080fe96fcf94195d3678d8025c"
+      "sha256": "3d12b167b464796530c1c96892796559b61b345b589a479c98c07b9bce541f42"
     },
     {
       "id": "apps.studio.qml.pages.DashboardPage",
       "path": "apps/studio/qml/pages/DashboardPage.qml",
       "type": "qml",
-      "sha256": "f007ce491d114c11652fcbdc35cc3b7429f727bae9758ad6b65fd9d270c3a6eb"
+      "sha256": "edb45643f18ff0093cb6cf78ca7f2cfda595e25eb5ff66724214d61039ffb179"
+    },
+    {
+      "id": "apps.studio.qml.pages.MirrorPage",
+      "path": "apps/studio/qml/pages/MirrorPage.qml",
+      "type": "qml",
+      "sha256": "208998d8f3817772468ef0e0b2913dc79198cd67fa727928ff58c923ed5a8a8e"
+    },
+    {
+      "id": "apps.studio.qml.pages.WorkspaceModulePage",
+      "path": "apps/studio/qml/pages/WorkspaceModulePage.qml",
+      "type": "qml",
+      "sha256": "dc763a3f1c0bd5af847d12edbf50ee4edd467fda4c99ce8a9ed5f8d291e99bc1"
+    },
+    {
+      "id": "assets.adb-banner.png",
+      "path": "assets/adb-banner.png",
+      "type": "image",
+      "sha256": "a16afd73ff05e8fb81699075e1ddce89086e8b29cf69ba145f32e65ea6eeffcc"
     },
     {
       "id": "assets.app-icon-adb.ico",
@@ -62,10 +86,28 @@
       "sha256": "8cfe67c2331d24c63c1d11f3c14c27f124c91e38000e02916bcde29313a2f7f0"
     },
     {
+      "id": "assets.marketing.adb-studio-enterprise-banner.png",
+      "path": "assets/marketing/adb-studio-enterprise-banner.png",
+      "type": "image",
+      "sha256": "507cc4499f1b1db86d9f2325275a901892a3bdee241ee621a540b274767ba7a7"
+    },
+    {
+      "id": "assets.marketing.adb-studio-enterprise-banner.svg",
+      "path": "assets/marketing/adb-studio-enterprise-banner.svg",
+      "type": "image",
+      "sha256": "0dd4fc554e7117bb5134025b6a05db51a5cbc2cc72c6822f9a9609ebf2505c5d"
+    },
+    {
       "id": "assets.tray-adb.png",
       "path": "assets/tray-adb.png",
       "type": "image",
       "sha256": "f935b34f1310e571366e174cf11af460673f1c0d0f422a205ded5f4a91a25a1a"
+    },
+    {
+      "id": "assets.undraw_contact_us_re_4qqt.svg",
+      "path": "assets/undraw_contact_us_re_4qqt.svg",
+      "type": "image",
+      "sha256": "751d4f8a4ccb6837d65bae5fcb985eac0e7bc5d1cf010d2985acc2bef0ff82a7"
     }
   ]
 }

@@ -5,7 +5,7 @@ on:
     inputs:
       configuration: { type: string, default: Release }
       artifact-name: { type: string, required: true }
-      package: { type: boolean, default: false }
+      command: { type: string, default: build }
 
 permissions:
   contents: read
@@ -23,46 +23,31 @@ jobs:
           version: '6.8.1'
           arch: win64_msvc2022_64
           cache: true
-      - name: Validate repository
-        run: |
-          python scripts/generate_windows_icon.py .
-          python scripts/update_resources.py .
-          python scripts/validate_resources.py .
-          python scripts/validate_version.py .
-          python scripts/validate_architecture.py .
-          python scripts/validate_qml_policy.py .
-      - name: Configure and build
+      - name: Install packaging tools
+        if: contains(fromJSON('["package", "release", "nightly"]'), inputs.command)
+        run: choco install innosetup --yes --no-progress
+      - name: Install static analysis tools
+        if: inputs.command == 'lint'
         shell: pwsh
         run: |
-          $preset = "windows-msvc-${{ inputs.configuration }}".ToLowerInvariant()
-          cmake --preset $preset
-          cmake --build --preset $preset --parallel
-      - name: Format and QML lint
-        shell: pwsh
-        run: |
-          $sources = Get-ChildItem apps,core,tests -Recurse -Include *.cpp,*.hpp | ForEach-Object FullName
-          clang-format --dry-run --Werror $sources
-          $preset = "windows-msvc-${{ inputs.configuration }}".ToLowerInvariant()
-          $qml = Get-ChildItem apps/studio/qml -Recurse -Filter *.qml | ForEach-Object FullName
-          & "$env:QT_ROOT_DIR/bin/qmllint.exe" -I "build/$preset/core" $qml
-      - name: Test
-        shell: pwsh
-        run: |
-          $preset = "windows-msvc-${{ inputs.configuration }}".ToLowerInvariant()
-          ctest --test-dir "build/$preset" -C "${{ inputs.configuration }}" --output-on-failure
-      - name: Create portable package and installer
-        if: inputs.package
-        run: |
-          choco install innosetup --yes --no-progress
-          python Build.py --config "${{ inputs.configuration }}" --skip-tests
+          choco install llvm cppcheck ninja --yes --no-progress
+          Import-Module "$env:ChocolateyInstall\helpers\chocolateyProfile.psm1"
+          Update-SessionEnvironment
+          ./scripts/install_iwyu.ps1
+      - name: Run build entry point
+        env:
+          QTDIR: ${{ env.QT_ROOT_DIR }}
+        run: python build.py "${{ inputs.command }}" --config "${{ inputs.configuration }}"
       - uses: actions/upload-artifact@v7
-        if: ${{ !inputs.package }}
+        if: contains(fromJSON('["build", "test", "benchmark"]'), inputs.command)
         with:
           name: ${{ inputs.artifact-name }}
-          path: build/windows-msvc-*/${{ inputs.configuration }}/adb-studio.exe
+          path: |
+            build/windows-msvc-*/${{ inputs.configuration }}/adb-studio.exe
+            dist/evidence/**
           if-no-files-found: error
       - uses: actions/upload-artifact@v7
-        if: inputs.package
+        if: contains(fromJSON('["package", "release", "nightly"]'), inputs.command)
         with:
           name: ${{ inputs.artifact-name }}
           path: dist/**

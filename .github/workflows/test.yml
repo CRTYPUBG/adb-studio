@@ -3,4 +3,4 @@ on: { pull_request: {}, workflow_dispatch: {} }
 jobs:
   windows:
     uses: ./.github/workflows/_windows.yml
-    with: { configuration: Debug, artifact-name: test-evidence }
+    with: { configuration: Debug, artifact-name: test-evidence, command: test }

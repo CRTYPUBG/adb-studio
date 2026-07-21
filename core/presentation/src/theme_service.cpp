@@ -2,6 +2,7 @@
 
 #include <QGuiApplication>
 #include <QPalette>
+#include <QSettings>
 #include <QStyleHints>
 
 namespace adb_studio
@@ -11,6 +12,12 @@ ThemeService::ThemeService(QObject* parent) : QObject(parent)
 {
     const auto* hints = QGuiApplication::styleHints();
     connect(hints, &QStyleHints::colorSchemeChanged, this, &ThemeService::refreshSystemState);
+    const int storedMode = QSettings().value(QStringLiteral("ui/themeMode"), 0).toInt();
+    if (storedMode >= static_cast<int>(ThemeMode::System) &&
+        storedMode <= static_cast<int>(ThemeMode::Dark))
+    {
+        setThemeMode(static_cast<ThemeMode>(storedMode));
+    }
     refreshSystemState();
 }
 
@@ -21,6 +28,7 @@ void ThemeService::setThemeMode(ThemeMode mode)
         return;
     }
     m_themeMode = mode;
+    QSettings().setValue(QStringLiteral("ui/themeMode"), static_cast<int>(mode));
     switch (mode)
     {
     case ThemeMode::System:

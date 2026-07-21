@@ -3,7 +3,7 @@ documentation:
       - any-glob-to-any-file: ['**/*.md', 'docs/**']
 ci:
   - changed-files:
-      - any-glob-to-any-file: ['.github/**', 'cmake/**', 'Build.py']
+      - any-glob-to-any-file: ['.github/**', 'cmake/**', 'build.py', 'build_config.py']
 ui:
   - changed-files:
       - any-glob-to-any-file: ['apps/studio/qml/**', 'assets/**']

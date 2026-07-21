@@ -7,7 +7,8 @@ import sys
 
 def main() -> int:
     root = pathlib.Path(sys.argv[1] if len(sys.argv) > 1 else ".").resolve()
-    patterns = ("apps/studio/qml/**/*.qml", "assets/*.png", "assets/*.ico")
+    patterns = ("apps/studio/qml/**/*.qml", "assets/**/*.png", "assets/**/*.ico",
+                "assets/**/*.svg")
     paths = sorted({path for pattern in patterns for path in root.glob(pattern)})
     resources = []
     for path in paths:

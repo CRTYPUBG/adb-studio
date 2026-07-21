@@ -45,8 +45,9 @@ def main() -> int:
             errors += 1
 
     expected = {path.resolve() for path in (root / "apps" / "studio" / "qml").rglob("*.qml")}
-    expected.update(path.resolve() for path in (root / "assets").glob("*.png"))
-    expected.update(path.resolve() for path in (root / "assets").glob("*.ico"))
+    expected.update(path.resolve() for path in (root / "assets").rglob("*.png"))
+    expected.update(path.resolve() for path in (root / "assets").rglob("*.ico"))
+    expected.update(path.resolve() for path in (root / "assets").rglob("*.svg"))
     for path in sorted(expected - registered):
         fail(f"unregistered application resource: {path.relative_to(root)}")
         errors += 1

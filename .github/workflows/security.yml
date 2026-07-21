@@ -1,6 +1,23 @@
 name: Security
 on: { pull_request: {}, workflow_dispatch: {} }
+permissions: { contents: read }
 jobs:
-  windows:
-    uses: ./.github/workflows/_windows.yml
-    with: { configuration: Release, artifact-name: security-build }
+  dependency-review:
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/dependency-review-action@v4
+        with: { fail-on-severity: high }
+  vulnerability-scan:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: aquasecurity/trivy-action@0.30.0
+        with:
+          scan-type: fs
+          scan-ref: .
+          scanners: vuln,secret,misconfig,license
+          severity: HIGH,CRITICAL
+          exit-code: '1'
+          ignore-unfixed: true

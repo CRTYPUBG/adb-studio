@@ -3,7 +3,9 @@
     "adb-studio": "presentation",
     "adb_studio_core": "viewmodel",
     "adb_studio_dashboard_tests": "tests",
-    "adb_studio_theme_tests": "tests"
+    "adb_studio_theme_tests": "tests",
+    "adb_studio_diagnostics_tests": "tests",
+    "adb_studio_probe_integration_tests": "tests"
   },
   "allowedLayerDependencies": {
     "presentation": ["presentation", "viewmodel"],
@@ -17,6 +19,8 @@
   "dependencies": [
     ["adb-studio", "adb_studio_core"],
     ["adb_studio_dashboard_tests", "adb_studio_core"],
-    ["adb_studio_theme_tests", "adb_studio_core"]
+    ["adb_studio_theme_tests", "adb_studio_core"],
+    ["adb_studio_diagnostics_tests", "adb_studio_core"],
+    ["adb_studio_probe_integration_tests", "adb_studio_core"]
   ]
 }

@@ -1,0 +1,6 @@
+name: Artifacts
+on: { workflow_dispatch: {}, workflow_call: {} }
+jobs:
+  package:
+    uses: ./.github/workflows/_windows.yml
+    with: { configuration: Release, artifact-name: complete-release-evidence, command: package }

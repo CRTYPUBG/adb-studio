@@ -12,6 +12,8 @@ class DeviceDashboardViewModelTest final : public QObject
         const adb_studio::DeviceDashboardViewModel viewModel;
         QVERIFY(!viewModel.connected());
         QVERIFY(!viewModel.state().isEmpty());
+        QVERIFY(!viewModel.usbStatus().isEmpty());
+        QVERIFY(!viewModel.wirelessStatus().isEmpty());
     }
 
     void requestsRefresh()

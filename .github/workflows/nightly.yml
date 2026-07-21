@@ -2,7 +2,41 @@ name: Nightly
 on:
   schedule: [{ cron: '17 2 * * *' }]
   workflow_dispatch:
+permissions: { contents: read }
 jobs:
-  windows:
-    uses: ./.github/workflows/_windows.yml
-    with: { configuration: Release, artifact-name: nightly-windows, package: true }
+  nightly:
+    runs-on: windows-2022
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
+        with: { python-version: '3.12' }
+      - run: python -m pip install --disable-pip-version-check Pillow==12.2.0
+      - uses: jurplel/install-qt-action@v4
+        with: { version: '6.8.1', arch: win64_msvc2022_64, cache: true }
+      - name: Install release tools
+        shell: pwsh
+        run: |
+          choco install innosetup llvm cppcheck ninja --yes --no-progress
+          Import-Module "$env:ChocolateyInstall\helpers\chocolateyProfile.psm1"
+          Update-SessionEnvironment
+          ./scripts/install_iwyu.ps1
+      - name: Decode signing certificate
+        shell: pwsh
+        env: { SIGN_CERT_BASE64: '${{ secrets.SIGN_CERT_BASE64 }}' }
+        run: |
+          if (-not $env:SIGN_CERT_BASE64) { throw 'SIGN_CERT_BASE64 is not configured' }
+          [IO.File]::WriteAllBytes("$env:RUNNER_TEMP\signing.pfx", [Convert]::FromBase64String($env:SIGN_CERT_BASE64))
+      - name: Build signed nightly
+        env:
+          QTDIR: ${{ env.QT_ROOT_DIR }}
+          SIGN_CERT_PATH: '${{ runner.temp }}\signing.pfx'
+          SIGN_CERT_PASSWORD: ${{ secrets.SIGN_CERT_PASSWORD }}
+          SIGN_TIMESTAMP_URL: ${{ vars.SIGN_TIMESTAMP_URL || 'https://timestamp.digicert.com' }}
+          SIGN_HASH_ALGORITHM: SHA256
+        run: python build.py nightly
+      - name: Delete signing certificate
+        if: always()
+        shell: pwsh
+        run: Remove-Item -LiteralPath "$env:RUNNER_TEMP\signing.pfx" -Force -ErrorAction SilentlyContinue
+      - uses: actions/upload-artifact@v7
+        with: { name: nightly-windows, path: 'dist/**', if-no-files-found: error }

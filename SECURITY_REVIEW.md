@@ -10,5 +10,11 @@
 - No update, plugin, FFI or telemetry boundary is implemented yet; those features remain blocked
   until their dedicated threat review and contract tests exist.
 
-Residual risk: bundled third-party binary versions and provenance require verification before any
-redistribution. This development milestone is not a public release.
+- Authenticode release automation reads certificate material only from environment/GitHub Secrets,
+  redacts passwords from logs, timestamps and verifies first-party/package signatures, and deletes
+  the temporary CI certificate even after failure.
+- Trivy, dependency review, CodeQL and deterministic dependency/license auditing are mandatory
+  workflow gates.
+
+Residual risk: production signing credentials and clean-machine installer/MSIX certification are
+required before public redistribution. This development milestone is not a public release.

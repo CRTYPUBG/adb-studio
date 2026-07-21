@@ -1,8 +1,8 @@
 #ifndef MyAppVersion
-  #define MyAppVersion "0.1.0"
+  #error MyAppVersion must be supplied by build.py
 #endif
 #ifndef MyAppBuild
-  #define MyAppBuild "1"
+  #error MyAppBuild must be supplied by build.py
 #endif
 #ifndef SourceDir
   #define SourceDir "dist\ADB-Studio"
@@ -13,12 +13,15 @@
 #ifndef SetupIcon
   #define SetupIcon "assets\app-icon-adb.ico"
 #endif
+#ifndef MyAppCompany
+  #define MyAppCompany "CRTY"
+#endif
 
 [Setup]
 AppId={{6F845ED6-DC56-4F3B-B874-10C43CC4E506}
 AppName=ADB Studio
 AppVersion={#MyAppVersion}
-AppPublisher=ADB Studio Community
+AppPublisher={#MyAppCompany}
 AppPublisherURL=https://github.com/CRTYPUBG/adb-studio
 AppSupportURL=https://github.com/CRTYPUBG/adb-studio/issues
 AppUpdatesURL=https://github.com/CRTYPUBG/adb-studio/releases
@@ -38,7 +41,7 @@ WizardStyle=modern
 CloseApplications=yes
 RestartApplications=no
 VersionInfoVersion={#MyAppVersion}.{#MyAppBuild}
-VersionInfoCompany=ADB Studio Community
+VersionInfoCompany={#MyAppCompany}
 VersionInfoDescription=ADB Studio Installer
 VersionInfoProductName=ADB Studio
 VersionInfoProductVersion={#MyAppVersion}.{#MyAppBuild}
