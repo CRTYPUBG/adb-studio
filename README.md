@@ -1,77 +1,258 @@
+<div align="center">
+
+<img src="https://github.com/user-attachments/assets/2f38a5f8-43a8-4269-9dd4-f218a8491b38" width="100%">
+
 # ADB Studio
 
-![ADB Studio enterprise platform banner](assets/marketing/adb-studio-enterprise-banner.png)
+### Modern Android Device Management Platform
 
-![Version](https://img.shields.io/badge/version-0.1.0-2563EB)
+Windows-first • C++20 • Qt 6.8 • Fluent Design • Screen Mirroring • Developer Tools
 
-ADB Studio is a Windows-first, cross-platform-ready Android device management application built
-with C++20, Qt 6.8, Qt Quick, QML and the FluentWinUI3 Qt Quick Controls style.
+<p>
 
-The `0.1.0` release provides the governed repository foundation, FluentWinUI3 shell,
-evidence-based device onboarding and a real scrcpy 4.0 mirroring vertical slice. The visible modules
-are Dashboard, Devices, Screen Mirroring and Device Guide; unsupported modules are not shown.
-Mirroring supports per-serial USB/wireless sessions, audio, recording, screenshots, clipboard
-options, APK installation, display/codec controls, metrics and recovery. English and Turkish switch
-live without restarting.
+<img src="https://img.shields.io/badge/Windows-11-0078D4?style=for-the-badge&logo=windows11&logoColor=white">
 
-## Build
+<img src="https://img.shields.io/badge/C++20-00599C?style=for-the-badge&logo=cplusplus&logoColor=white">
 
-Prerequisites are Visual Studio 2022, CMake 3.25+, Python 3 and Qt 6.8.1 MSVC x64.
+<img src="https://img.shields.io/badge/Qt-6.8-41CD52?style=for-the-badge&logo=qt&logoColor=white">
 
-`build.py` is the single local and CI entry point. For a complete unsigned local package set, run:
+<img src="https://img.shields.io/github/license/CRTYPUBG/adb-studio?style=for-the-badge">
+
+<img src="https://img.shields.io/github/actions/workflow/status/CRTYPUBG/adb-studio/build.yml?style=for-the-badge">
+
+<img src="https://img.shields.io/github/v/release/CRTYPUBG/adb-studio?style=for-the-badge">
+
+</p>
+
+</div>
+
+---
+
+# Overview
+
+ADB Studio is a modern, high-performance Android device management platform built with **C++20**, **Qt 6.8**, **Qt Quick**, **QML**, and a **Windows 11 Fluent Design** interface.
+
+The project is designed for:
+
+- Android Developers
+- QA Engineers
+- Power Users
+- Mobile Gamers
+- Device Repair Technicians
+- Reverse Engineers
+- Software Engineers
+
+ADB Studio combines Android device management, screen mirroring, file transfer, diagnostics, developer tools, and performance analysis into a single native desktop application.
+
+---
+
+# Highlights
+
+- Modern Fluent Design UI
+- Screen Mirroring
+- Device Dashboard
+- Wireless ADB
+- USB Device Manager
+- APK Manager
+- File Explorer
+- Logcat Viewer
+- Fastboot Tools
+- ADB Shell
+- Performance Monitor
+- Plugin System
+- AI Assistant (Planned)
+
+---
+
+# Current Development Status
+
+| Module | Status |
+|----------|:------:|
+| Repository Foundation | ✅ |
+| Build System | ✅ |
+| Fluent UI Shell | ✅ |
+| Theme System | ✅ |
+| Resource System | ✅ |
+| Build Pipeline | ✅ |
+| Device Discovery | 🚧 |
+| Screen Mirroring | 🚧 |
+| File Manager | 🚧 |
+| APK Manager | 🚧 |
+| Wireless ADB | 🚧 |
+| Plugin SDK | 📅 |
+| AI Assistant | 📅 |
+
+---
+
+# Screenshots
+
+## Dashboard
+
+<p align="center">
+
+<img src="docs/screenshots/foundation-shell.png" width="90%">
+
+</p>
+
+More screenshots will be added as development progresses.
+
+---
+
+# Build
+
+## Requirements
+
+- Windows 11
+- Visual Studio 2022
+- MSVC x64
+- Qt 6.8.1
+- CMake 3.25+
+- Python 3
+- Android Platform Tools
+
+---
+
+## Automatic Build
+
+ADB Studio includes a complete build automation system.
+
+Simply run:
 
 ```powershell
-python build.py package
+python Build.py
 ```
 
-The release output is `dist/ADB-Studio/adb-studio.exe`. The command runs repository validation,
-CMake, tests, `windeployqt`, packaging, SBOM creation, checksums, manifest generation and startup
-benchmarking. It verifies the Qt runtime, Windows platform plugin and FluentWinUI3 plugin.
+The build pipeline automatically performs:
 
-Supported commands are `configure`, `clean`, `build`, `rebuild`, `test`, `benchmark`, `lint`,
-`package`, `sign`, `release`, `publish` and `nightly`. Select Debug with, for example,
-`python build.py build --config Debug`.
+- Resource Validation
+- Version Validation
+- CMake Configure
+- CMake Build
+- Unit Tests
+- Qt Deployment
+- DLL Verification
+- Plugin Verification
+- Release Packaging
+- Installer Generation
+- Digital Signing (optional)
+- SHA256 Generation
 
-Release builds generate a portable ZIP, Inno Setup installer, MSIX, debug-symbol ZIP, license
-bundle, SPDX/CycloneDX SBOMs, SHA-256 file and artifact manifest under `dist/artifacts` and
-`dist/evidence`. Set `ISCC` only when Inno Setup is installed in a non-standard location.
+---
 
-Production `release`, `publish` and `nightly` operations require Authenticode credentials and fail
-closed when any credential or verification step is missing. Secrets are read only from
-`SIGN_CERT_PATH`, `SIGN_CERT_PASSWORD`, `SIGN_TIMESTAMP_URL` and `SIGN_HASH_ALGORITHM`.
-`MSIX_PUBLISHER` must match the signing certificate subject. Only basenames allow-listed in
-`config/first-party-binaries.txt` are signed; deployed Qt and MSVC files are never signed.
+## Manual Build
 
 ```powershell
 cmake --preset windows-msvc-debug
+
 cmake --build --preset windows-msvc-debug
+
 ctest --preset windows-msvc-debug -C Debug
 ```
 
-Update and validate resources after QML changes:
+---
+
+## Resource Validation
 
 ```powershell
-python scripts/update_resources.py .
-python scripts/validate_resources.py .
-python scripts/validate_qml_policy.py .
+python scripts/update_resources.py
+
+python scripts/validate_resources.py
+
+python scripts/validate_qml_policy.py
 ```
 
-See `CONTRIBUTING.md`, `GOVERNANCE.md`, and `docs/architecture/README.md` before changing code.
-Connection behavior is documented in `DEVICE_DETECTION.md`, `CONNECTION_WIZARD.md`,
-`SMART_DIAGNOSTICS.md`, `OEM_GUIDES.md`, `USB_RECOVERY.md`, `WIRELESS_SETUP.md` and
-`DEVICE_HEALTH_SCORE.md`.
-Sidebar architecture and capability availability are documented in
-`docs/modules/sidebar-workspaces.md`; the real mirroring slice is documented in
-`docs/modules/screen-mirroring.md`.
+---
 
-## Current UI
+# Repository Structure
 
-![ADB Studio FluentWinUI3 foundation shell](docs/screenshots/foundation-shell.png)
+```
+apps/
+core/
+engine/
+plugins/
+sdk/
+resources/
+themes/
+translations/
+tests/
+benchmarks/
+tools/
+scripts/
+docs/
+cmake/
+.github/
+```
 
-![ADB Studio smart connection wizard](docs/screenshots/connection-wizard.png)
+---
 
-![ADB Studio sidebar workspaces](docs/screenshots/sidebar-devices-workspace.png)
+# Technology Stack
 
-![ADB Studio screen mirroring](docs/screenshots/mirror-service.png)
+| Category | Technology |
+|------------|------------|
+| Language | C++20 |
+| UI | Qt Quick |
+| Framework | Qt 6.8 |
+| Build | CMake |
+| IDE | Visual Studio 2022 |
+| Installer | Inno Setup |
+| Package | MSIX |
+| CI/CD | GitHub Actions |
+| Testing | GoogleTest |
+| Documentation | Markdown |
 
-![ADB Studio screen mirroring in Turkish](docs/screenshots/mirror-service-tr.png)
+---
+
+# Roadmap
+
+- Repository Foundation
+- Fluent UI
+- Device Dashboard
+- Screen Mirroring
+- File Manager
+- APK Manager
+- Wireless ADB
+- Fastboot
+- Plugin SDK
+- AI Assistant
+- Stable Release v1.0
+
+---
+
+# Documentation
+
+Documentation is available in:
+
+- Docs
+- Wiki
+- Architecture
+- Contributing
+- Governance
+
+---
+
+# Contributing
+
+Contributions are welcome.
+
+Before submitting a Pull Request please read:
+
+- CONTRIBUTING.md
+- SECURITY.md
+- CODE_OF_CONDUCT.md
+- GOVERNANCE.md
+
+---
+
+# License
+
+Apache License 2.0
+
+---
+
+<div align="center">
+
+Built with ❤️ by **CRTYPUBG**
+
+ADB Studio © 2026
+
+</div>
