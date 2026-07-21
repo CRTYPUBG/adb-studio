@@ -1,5 +1,8 @@
 # ADB Studio
 
+<img width="1983" height="793" alt="adb-banner" src="https://github.com/user-attachments/assets/2f38a5f8-43a8-4269-9dd4-f218a8491b38" />
+
+
 ADB Studio is a Windows-first, cross-platform-ready Android device management application built
 with C++20, Qt 6.8, Qt Quick, QML and the FluentWinUI3 Qt Quick Controls style.
 
